@@ -1,8 +1,35 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+// essentials
+import type { AppProps } from "next/app";
+// external libs
+import { ThemeProvider } from "next-themes";
+import NextNProgress from "nextjs-progressbar";
+
+// global style
+import { darkTheme, globalStyles } from "../stitches.config";
+
+// store wrapper
+import { wrapper } from "../redux/store";
+import { Providers } from "../components/Providers";
+
+// providers
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  globalStyles();
+  return (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      value={{
+        dark: darkTheme.className,
+        light: "light",
+      }}
+    >
+      <Providers>
+        <NextNProgress />
+        <Component {...pageProps} />
+      </Providers>
+    </ThemeProvider>
+  );
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp);
