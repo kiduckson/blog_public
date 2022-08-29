@@ -6,8 +6,9 @@ import { useAppSelector } from "../redux/hooks";
 import { selectSession } from "../redux/sessionSlice";
 import { signInWithGithub, signOutFromGithub } from "../hooks/authHook";
 
-export const Auth = () => {
+export const Login = () => {
   const session = useAppSelector(selectSession);
+
   return (
     <>
       {!session ? (
