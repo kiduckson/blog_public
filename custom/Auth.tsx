@@ -2,36 +2,34 @@ import React from "react";
 import { supabase } from "../lib/supabase";
 import { DropdownMenu, FullScreenLoading } from "../components";
 import { PersonIcon, EnterIcon, ExitIcon } from "@radix-ui/react-icons";
-import { Session } from "@supabase/gotrue-js/src/lib/types";
+
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { updateSession, selectSession } from "../redux/sessionSlice";
 
 export const Auth = () => {
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const [session, setSession] = React.useState<Session>();
+  const session = useAppSelector(selectSession);
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
     let mounted = true;
     async function getInitialSession() {
       const session = await supabase.auth.session();
-      if (mounted) {
-        if (session) {
-          setSession(session);
-        }
-        setIsLoading(false);
+      if (mounted && session) {
+        dispatch(updateSession({ session }));
       }
     }
     getInitialSession();
     const { data: listener } = supabase.auth.onAuthStateChange((_event: any, session: any) => {
-      setSession(session);
+      dispatch(updateSession({ session }));
     });
     return () => {
       mounted = false;
       listener?.unsubscribe();
     };
-  }, []);
+  }, [dispatch]);
 
   const signInWithGithub = async () => {
     try {
-      setIsLoading(true);
       const { user, session, error } = await supabase.auth.signIn({
         provider: "github",
       });
@@ -42,8 +40,6 @@ export const Auth = () => {
       if (error instanceof Error) {
         console.log(error.message);
       }
-    } finally {
-      setIsLoading(false);
     }
   };
   async function signOutFromGithub() {
@@ -56,12 +52,7 @@ export const Auth = () => {
       if (error instanceof Error) {
         console.log(error.message);
       }
-    } finally {
-      setIsLoading(false);
     }
-  }
-  if (isLoading) {
-    return <FullScreenLoading />;
   }
   return (
     <>
@@ -73,7 +64,7 @@ export const Auth = () => {
       ) : (
         <DropdownMenu.DropdownMenuItem onClick={signOutFromGithub} css={{ cursor: "pointer" }}>
           로그아웃
-          <EnterIcon />
+          <ExitIcon />
         </DropdownMenu.DropdownMenuItem>
       )}
     </>

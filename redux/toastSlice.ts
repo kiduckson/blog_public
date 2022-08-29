@@ -30,7 +30,7 @@ const toastSlice = createSlice({
 export const { toggleToast } = toastSlice.actions;
 
 //selector
-export const selectCount = (state: RootState) => {
+export const selectToast = (state: RootState) => {
   state.toast.title, state.toast.type;
 };
 

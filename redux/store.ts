@@ -3,9 +3,11 @@ import { createWrapper, HYDRATE } from "next-redux-wrapper";
 
 //slice
 import toastReducer from "./toastSlice";
+import sessionReducer from "./sessionSlice";
 
 const combinedReducer = combineReducers({
   toast: toastReducer,
+  session: sessionReducer,
 });
 
 const reducer: typeof combinedReducer = (state, action: AnyAction) => {
