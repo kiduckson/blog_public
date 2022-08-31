@@ -1,8 +1,8 @@
 import React from "react";
 import { supabase } from "../lib/supabase";
-
-import { useAppDispatch } from "../redux/hooks";
-import { updateSession } from "../redux/sessionSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { updateSession, selectSession } from "../redux/sessionSlice";
+import { toggleToast } from "../redux/toastSlice";
 
 // login
 export const signInWithGithub = async (): Promise<void> => {
@@ -35,7 +35,18 @@ export const signOutFromGithub = async (): Promise<void> => {
 // setSession
 // 레이아웃에서 세션 관리
 export const useAuth = () => {
+  const session = useAppSelector(selectSession);
   const dispatch = useAppDispatch();
+
+  React.useEffect(() => {
+    if (session?.user?.app_metadata) {
+      let lastSignin: string = session.user.last_sign_in_at!;
+      if (Date.now() - Date.parse(lastSignin) < 1200) {
+        dispatch(toggleToast({ title: "로그인 성공", type: "success" }));
+      }
+    }
+  }, [session, dispatch]);
+
   React.useEffect(() => {
     let mounted = true;
     async function getInitialSession() {

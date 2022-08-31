@@ -8,5 +8,5 @@ export { Text } from "./Text";
 export { Grid } from "./Grid";
 export { Panel, panelStyles } from "./Panel";
 export { FullScreenLoading } from "./FullScreenLoading";
-export { Toast } from "./Toast";
+export * as Toast from "./Toast";
 export * as DropdownMenu from "./DropdownMenu";

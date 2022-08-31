@@ -1,28 +1,30 @@
 import React from "react";
-import { Toast } from "../components";
-import type { ToastStateType } from "../redux/toastSlice";
+import { Toast, Button } from "../components";
+import { selectToast, toggleToast } from "../redux/toastSlice";
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
 
-interface ToastProps {
-  toast: ToastStateType;
-}
-type Variant = "loContrast" | "gray" | "blue" | "green" | "red";
-export const AccountToast = ({ toast }: ToastProps) => {
-  let variant: Variant =
-    toast.type === "SUCCESS"
-      ? "green"
-      : toast.type === "ERROR"
-      ? "red"
-      : toast.type === "WARNING"
-      ? "loContrast"
-      : "gray";
+export const AccountToast = () => {
+  const dispatch = useAppDispatch();
+  const toast = useAppSelector(selectToast);
 
   return (
-    <Toast
-      title={toast.title}
-      content="TEST"
-      defaultOpen={false}
-      open={toast.isOpen}
-      toastVariant={variant}
-    ></Toast>
+    <Toast.ToastProvider swipeDirection="right">
+      <Button
+        ghost
+        variant={"green"}
+        size={2}
+        onClick={() => dispatch(toggleToast({ title: "open sesame" }))}
+      >
+        Toast
+      </Button>
+      <Toast.Toast open={toast.isOpen} onOpenChange={() => dispatch(toggleToast({}))}>
+        <Toast.ToastTitle>{toast.title}</Toast.ToastTitle>
+        <Toast.ToastDescription asChild>{toast.title}</Toast.ToastDescription>
+        {/* <Toast.ToastAction asChild altText="Goto schedule to undo">
+          <Button variant="green">Undo button</Button>
+        </Toast.ToastAction> */}
+      </Toast.Toast>
+      <Toast.ToastViewport />
+    </Toast.ToastProvider>
   );
 };

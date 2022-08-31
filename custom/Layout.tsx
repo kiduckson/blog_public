@@ -1,8 +1,8 @@
 import React from "react";
 import { Container } from "../components";
 import { Navbar } from "./Navbar";
+import { AccountToast } from "./AccountToast";
 import { useAuth } from "../hooks/authHook";
-
 interface props {
   children: React.ReactNode;
 }
@@ -13,6 +13,7 @@ export function Layout({ children }: props) {
   return (
     <Container size="1">
       <Navbar />
+      <AccountToast />
       <Container isMargin>{children}</Container>
     </Container>
   );

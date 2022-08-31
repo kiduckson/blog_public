@@ -1,8 +1,6 @@
-import * as ToastPrimitive from "@radix-ui/react-toast";
-import { styled, keyframes, CSS } from "../stitches.config";
+import { styled, keyframes } from "@stitches/react";
 import { alertStyle } from ".";
-import { Text, Button, buttonStyle } from ".";
-import { Cross1Icon } from "@radix-ui/react-icons";
+import * as ToastPrimitive from "@radix-ui/react-toast";
 
 const VIEWPORT_PADDING = 25;
 
@@ -10,14 +8,20 @@ const hide = keyframes({
   "0%": { opacity: 1 },
   "100%": { opacity: 0 },
 });
+
 const slideIn = keyframes({
-  from: { transform: `translateX(calc(100% + ${VIEWPORT_PADDING}px))` },
-  to: { transform: "translateX(0)" },
+  from: {
+    transform: `translateX(calc(100% + ${VIEWPORT_PADDING}px)) scale(0.5)`,
+    transformOrigin: "100% 50%",
+  },
+  to: { transform: "translateX(0) scale(1)", transformOrigin: "100% 50%" },
 });
+
 const swipeOut = keyframes({
   from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
   to: { transform: `translateX(calc(100% + ${VIEWPORT_PADDING}px))` },
 });
+
 const StyledViewport = styled(ToastPrimitive.Viewport, {
   position: "fixed",
   bottom: 0,
@@ -30,16 +34,26 @@ const StyledViewport = styled(ToastPrimitive.Viewport, {
   maxWidth: "100vw",
   margin: 0,
   listStyle: "none",
-  zIndex: 10,
+  zIndex: 2147483647,
   outline: "none",
 });
 
 const StyledToast = styled(
   ToastPrimitive.Root,
   {
+    backgroundColor: "$red9",
+    border: "1px solid",
+    bordeColor: "$slate4",
+    borderRadius: 6,
+    boxShadow:
+      "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
+    padding: 15,
     display: "grid",
-    rowGap: "$1",
-    position: "relative",
+    gridTemplateAreas: '"title action" "description action"',
+    gridTemplateColumns: "auto max-content",
+    columnGap: 15,
+    alignItems: "center",
+
     "@media (prefers-reduced-motion: no-preference)": {
       '&[data-state="open"]': {
         animation: `${slideIn} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
@@ -61,52 +75,32 @@ const StyledToast = styled(
   },
   alertStyle
 );
-const StyledTitle = styled(ToastPrimitive.Title, {});
-const StyledDescription = styled(ToastPrimitive.Description, {});
-const StyledAction = styled(ToastPrimitive.Action, {});
-const StyledClose = styled(ToastPrimitive.Close, buttonStyle, {
-  position: "absolute",
-  top: "$1",
-  right: "$1",
+
+const StyledTitle = styled(ToastPrimitive.Title, {
+  gridArea: "title",
+  marginBottom: 5,
+  fontWeight: 500,
+  color: "$slate12",
+  fontSize: 15,
 });
 
-type ToastPrimitiveProps = React.ComponentProps<typeof ToastPrimitive.Root>;
-type ToastProps = ToastPrimitiveProps & {
-  css?: CSS;
-  title?: string;
-  content?: string;
-  children?: React.ReactNode;
-  toastVariant: "loContrast" | "gray" | "blue" | "green" | "red";
-};
+const StyledDescription = styled(ToastPrimitive.Description, {
+  gridArea: "description",
+  margin: 0,
+  color: "$slate11",
+  fontSize: 13,
+  lineHeight: 1.3,
+});
 
-export const Toast = ({ css, title, content, children, toastVariant, ...props }: ToastProps) => {
-  const color = toastVariant === "loContrast" ? "contrast" : toastVariant;
-  const btnColor = toastVariant === "loContrast" ? "gray" : toastVariant;
-  return (
-    <>
-      <StyledToast {...props} variant={toastVariant}>
-        {title && (
-          <StyledTitle>
-            <Text size="4" variant={color}>
-              {title}
-            </Text>
-          </StyledTitle>
-        )}
-        <StyledDescription>
-          <Text size="2" variant={color}>
-            {content}
-          </Text>
-        </StyledDescription>
-        {children && (
-          <StyledAction asChild altText="none">
-            {children}
-          </StyledAction>
-        )}
-        <StyledClose aria-label="Close" ghost variant={btnColor}>
-          <Cross1Icon />
-        </StyledClose>
-      </StyledToast>
-      <StyledViewport />
-    </>
-  );
-};
+const StyledAction = styled(ToastPrimitive.Action, {
+  gridArea: "action",
+});
+
+// Exports
+export const ToastProvider = ToastPrimitive.Provider;
+export const ToastViewport = StyledViewport;
+export const Toast = StyledToast;
+export const ToastTitle = StyledTitle;
+export const ToastDescription = StyledDescription;
+export const ToastAction = StyledAction;
+export const ToastClose = ToastPrimitive.Close;

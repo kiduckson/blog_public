@@ -13,11 +13,10 @@ import { Box, Button, Container, Flex, Grid, Section, DropdownMenu } from "../co
 // custom
 import { ToggleTheme } from "./ToggleTheme";
 import { AccountDropDown } from "./AccountDropDown";
-import { AccountToast } from "./AccountToast";
 
 // redux
-import { useAppSelector } from "../redux/hooks";
 
+// Navbar style
 const Nav = styled(Grid, {
   transition: "all 0.2s ease-in",
   gridTemplateColumns: "auto 1fr",
@@ -28,8 +27,9 @@ const Nav = styled(Grid, {
   px: "$2",
   br: "$4",
 });
+
+// navbar element
 export const Navbar = () => {
-  const toast = useAppSelector((state) => state.toast);
   return (
     <Nav align={"center"} justify={"center"}>
       <Link href="/">

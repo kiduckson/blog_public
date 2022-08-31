@@ -24,10 +24,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         light: "light",
       }}
     >
-      <Providers>
-        <NextNProgress />
-        <Component {...pageProps} />
-      </Providers>
+      <NextNProgress />
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 }
