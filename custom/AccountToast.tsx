@@ -1,7 +1,11 @@
 import React from "react";
-import { Toast, Button } from "../components";
-import { selectToast, toggleToast } from "../redux/toastSlice";
+import { Toast, Button, Text } from "../components";
+import { selectToast, openToast, closeToast } from "../redux/toastSlice";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
+
+function prettyDate(date: number) {
+  return new Intl.DateTimeFormat("en-US", { dateStyle: "full", timeStyle: "short" }).format(date);
+}
 
 export const AccountToast = () => {
   const dispatch = useAppDispatch();
@@ -9,20 +13,18 @@ export const AccountToast = () => {
 
   return (
     <Toast.ToastProvider swipeDirection="right">
-      <Button
-        ghost
-        variant={"green"}
-        size={2}
-        onClick={() => dispatch(toggleToast({ title: "open sesame" }))}
-      >
-        Toast
-      </Button>
-      <Toast.Toast open={toast.isOpen} onOpenChange={() => dispatch(toggleToast({}))}>
-        <Toast.ToastTitle>{toast.title}</Toast.ToastTitle>
-        <Toast.ToastDescription asChild>{toast.title}</Toast.ToastDescription>
-        {/* <Toast.ToastAction asChild altText="Goto schedule to undo">
-          <Button variant="green">Undo button</Button>
-        </Toast.ToastAction> */}
+      <Toast.Toast open={toast.isOpen} onOpenChange={() => dispatch(closeToast())}>
+        <Toast.ToastTitle>
+          <Text size={3} css={{ fontWeight: 600 }}>
+            {toast.title}
+          </Text>
+        </Toast.ToastTitle>
+        <Toast.ToastDescription asChild>
+          <time>{prettyDate(Date.now())}</time>
+        </Toast.ToastDescription>
+        <Toast.ToastAction asChild altText="Goto schedule to undo">
+          <Button ghost>닫기</Button>
+        </Toast.ToastAction>
       </Toast.Toast>
       <Toast.ToastViewport />
     </Toast.ToastProvider>

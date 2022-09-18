@@ -18,18 +18,23 @@ const toastSlice = createSlice({
   name: "toast",
   initialState,
   reducers: {
-    toggleToast: (state, action: PayloadAction<ToastStateType>) => {
-      console.log("action dispatched");
+    openToast: (state, action: PayloadAction<ToastStateType>) => {
+      console.log("open");
       const { type, title } = action.payload;
-      state.title = title;
-      state.type = type;
-      state.isOpen = !state.isOpen;
+      state.title = title ? title : "";
+      state.type = type ? type : "";
+      state.isOpen = true;
+    },
+    closeToast: (state) => {
+      console.log("close");
+
+      state.isOpen = false;
     },
   },
 });
 
 // action disaptcher
-export const { toggleToast } = toastSlice.actions;
+export const { openToast, closeToast } = toastSlice.actions;
 
 //selector
 export const selectToast = (state: RootState) => {

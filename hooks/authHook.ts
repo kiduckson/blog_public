@@ -2,7 +2,7 @@ import React from "react";
 import { supabase } from "../lib/supabase";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { updateSession, selectSession } from "../redux/sessionSlice";
-import { toggleToast } from "../redux/toastSlice";
+import { openToast } from "../redux/toastSlice";
 
 // login
 export const signInWithGithub = async (): Promise<void> => {
@@ -42,7 +42,7 @@ export const useAuth = () => {
     if (session?.user?.app_metadata) {
       let lastSignin: string = session.user.last_sign_in_at!;
       if (Date.now() - Date.parse(lastSignin) < 1200) {
-        dispatch(toggleToast({ title: "로그인 성공", type: "success" }));
+        dispatch(openToast({ title: "로그인 성공", type: "success" }));
       }
     }
   }, [session, dispatch]);

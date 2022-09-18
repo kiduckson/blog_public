@@ -5,7 +5,7 @@ import { EnterIcon, ExitIcon } from "@radix-ui/react-icons";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { selectSession } from "../redux/sessionSlice";
 import { signInWithGithub, signOutFromGithub } from "../hooks/authHook";
-import { selectToast, toggleToast } from "../redux/toastSlice";
+import { selectToast, openToast } from "../redux/toastSlice";
 
 export const Auth = () => {
   const dispatch = useAppDispatch();
@@ -18,9 +18,9 @@ export const Auth = () => {
     try {
       await signOutFromGithub();
     } catch (err) {
-      dispatch(toggleToast({ title: "Error" }));
+      dispatch(openToast({ title: "오류 발생" }));
     } finally {
-      dispatch(toggleToast({ title: "Logged out successfully" }));
+      dispatch(openToast({ title: "로그아웃 성공" }));
     }
   };
   return (

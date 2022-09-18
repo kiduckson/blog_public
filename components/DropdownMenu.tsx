@@ -26,12 +26,12 @@ export const itemCss = css(baseItemCss, {
 
   "&[data-highlighted]": {
     outline: "none",
-    backgroundColor: "$slate9",
+    backgroundColor: "$slate5",
     color: "$white",
   },
 
   "&[data-disabled]": {
-    color: "$slate9",
+    color: "$slate5",
   },
 });
 
