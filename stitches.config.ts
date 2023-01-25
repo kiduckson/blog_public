@@ -194,8 +194,8 @@ export const { styled, css, theme, createTheme, getCssText, globalCss, keyframes
         shadowDark: "hsl(206 22% 7% / 20%)",
       },
       fonts: {
-        untitled: "Untitled Sans, -apple-system, system-ui, sans-serif",
-        mono: "Söhne Mono, menlo, monospace",
+        untitled: "NanumSquareNeo, Untitled Sans, -apple-system, system-ui, sans-serif",
+        mono: "NanumSquareNeo, Söhne Mono, menlo, monospace",
       },
       space: {
         1: "5px",
@@ -495,7 +495,9 @@ export const globalStyles = globalCss({
   //     "linear-gradient(90deg, $panel 19px, transparent 1%) 50%,linear-gradient($panel 19px,transparent 1%) 50%, $hiContrast",
   //   backgroundSize: "20px 20px",
   // },
+  "@import": ["url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css')"],
   body: {
+    fontFamily: "$untitled",
     hightlight: true,
     background: "$canvas",
     transition: "all 0.2s ease-in",
