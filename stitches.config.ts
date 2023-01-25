@@ -496,7 +496,20 @@ export const globalStyles = globalCss({
   //   backgroundSize: "20px 20px",
   // },
   body: {
+    hightlight: true,
     background: "$canvas",
     transition: "all 0.2s ease-in",
+    lineHeight: "1.25em",
+  },
+  code: {
+    background: "$teal6",
+    color: "$hiContrast",
+    padding: "2.5px 5px",
+    borderRadius: "6px",
+    fontSize: "1em",
+  },
+  a: {
+    textDecoration: "none",
+    color: "$blue11",
   },
 });

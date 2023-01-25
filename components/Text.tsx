@@ -159,9 +159,7 @@ export const Text = styled("span", {
     {
       variant: "cyan",
       gradient: "true",
-      css: {
-        background: "linear-gradient(to right, $cyan11, $teal11)",
-      },
+      css: {},
     },
     {
       variant: "teal",

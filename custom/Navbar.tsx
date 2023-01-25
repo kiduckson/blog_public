@@ -1,5 +1,7 @@
 // essentials
+import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 // external lib
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
@@ -30,15 +32,32 @@ const Nav = styled(Grid, {
 
 // navbar element
 export const Navbar = () => {
+  const router = useRouter();
   return (
     <Nav align={"center"} justify={"center"}>
-      <Link href="/">
-        <a>
-          <Button ghost css={{ placeSelf: "center start" }}>
-            <PaperPlaneIcon />
-          </Button>
-        </a>
-      </Link>
+      {router.pathname === "/" ? (
+        <Link href="/">
+          <a>
+            <Button
+              ghost
+              css={{
+                placeSelf: "center start",
+                background: "linear-gradient(to right, $teal7, $green7)",
+              }}
+            >
+              <PaperPlaneIcon />
+            </Button>
+          </a>
+        </Link>
+      ) : (
+        <Link href="/">
+          <a>
+            <Button ghost css={{ placeSelf: "center start" }}>
+              <PaperPlaneIcon />
+            </Button>
+          </a>
+        </Link>
+      )}
       <Flex css={{ placeSelf: "center end" }}>
         <ToggleTheme />
         <AccountDropDown />
