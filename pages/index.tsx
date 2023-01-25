@@ -6,9 +6,9 @@ import { Text, Flex, Button, Box } from "../components";
 import Typed from "typed.js";
 const TypedReactHooksDemo = () => {
   // Create reference to store the DOM element containing the animation
-  const el = React.useRef(null);
+  const el = React.useRef<any>(null);
   // Create reference to store the Typed instance itself
-  const typed = React.useRef(null);
+  const typed = React.useRef<any>(null);
 
   React.useEffect(() => {
     const options = {
