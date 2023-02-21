@@ -4,10 +4,12 @@ import { createWrapper, HYDRATE } from "next-redux-wrapper";
 //slice
 import toastReducer from "./toastSlice";
 import sessionReducer from "./sessionSlice";
+import localeReducer from "./localeSlice";
 
 const combinedReducer = combineReducers({
   toast: toastReducer,
   session: sessionReducer,
+  locale: localeReducer,
 });
 
 const reducer: typeof combinedReducer = (state, action: AnyAction) => {

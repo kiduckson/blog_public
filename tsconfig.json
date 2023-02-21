@@ -20,7 +20,8 @@
     "**/*.ts",
     "**/*.tsx",
     "custom/modal/ModalsContext.js",
-    "custom/modal/ModalsProvider.js"
+    "custom/modal/ModalsProvider.js",
+    "pages/blog/my.mdx"
   ],
   "exclude": ["node_modules"]
 }

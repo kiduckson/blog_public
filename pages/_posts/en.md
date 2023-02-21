@@ -1,10 +1,3 @@
-import { Layout } from "../../custom/Layout";
-import rehypeHighlight from "rehype-highlight";
-
-export const meta = {
-  author: "KiduckSon",
-};
-
 # `Overview`
 
 **4년차 웹 개발자 입니다.**
@@ -33,14 +26,3 @@ export const meta = {
   - Others : `nextjs`, `Nginx`, `Docker`, `AWS`
 
 ---
-
-export default ({ children }) => (
-  <Layout meta={meta}>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark.min.css"
-    ></link>
-    {children}
-
-  </Layout>
-);

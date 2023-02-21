@@ -1,27 +1,34 @@
+import fs from "fs";
+import matter from "gray-matter";
+import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { supabase } from "../../lib/supabase";
 
-interface Props {
-  source: MDXRemoteSerializeResult;
-}
-
-import { Layout } from "../../custom/Layout";
-
-const components = { Layout };
-
-export default function TestPage({ source }: Props) {
+export default function MyPage({ pageData }: any) {
   return (
-    <Layout>
-      <MDXRemote {...source} components={components} />
-    </Layout>
+    <div>
+      <h1>{pageData.title}</h1>
+      <MDXRemote {...pageData.mdxSource} />
+    </div>
   );
 }
 
+async function getPageData(slug: any) {
+  const fullPath = `/pages/blog/${slug}_wip.mdx`;
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
+  const mdxSource = await serialize(content);
+
+  return {
+    slug,
+    ...data,
+    mdxSource,
+  };
+}
 export async function getStaticProps() {
-  // MDX text - can be from a local file, database, anywhere
-  const blog = await supabase.from("");
-  const source = "Some **mdx** text, with a component";
-  const mdxSource = await serialize(source);
-  return { props: { source: mdxSource } };
+  const pageData = await getPageData("test");
+  return {
+    props: {
+      pageData,
+    },
+  };
 }

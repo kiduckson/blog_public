@@ -14,6 +14,7 @@ import { Box, Button, Container, Flex, Grid, Section, DropdownMenu } from "../co
 
 // custom
 import { ToggleTheme } from "./ToggleTheme";
+import { ToggleLocale } from "./ToggleLocale";
 import { AccountDropDown } from "./AccountDropDown";
 
 // redux
@@ -42,7 +43,6 @@ export const Navbar = () => {
               ghost
               css={{
                 placeSelf: "center start",
-                background: "linear-gradient(to right, $teal7, $green7)",
               }}
             >
               <PaperPlaneIcon />
@@ -60,7 +60,8 @@ export const Navbar = () => {
       )}
       <Flex css={{ placeSelf: "center end" }}>
         <ToggleTheme />
-        <AccountDropDown />
+        <ToggleLocale />
+        {/* <AccountDropDown /> */}
       </Flex>
     </Nav>
   );
