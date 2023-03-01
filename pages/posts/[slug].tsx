@@ -2,9 +2,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { allPosts, type Post } from "contentlayer/generated";
 import { PostLayout } from "@custom/.";
-import { Text } from "@components/.";
 import { styled, css } from "../../stitches.config";
-import { table } from "console";
 
 type PostProps = {
   post: Post;
