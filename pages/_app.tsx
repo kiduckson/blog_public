@@ -9,7 +9,6 @@ import { darkTheme, globalStyles } from "../stitches.config";
 
 // store wrapper
 import { wrapper } from "../redux/store";
-import { MDXProvider } from "@mdx-js/react";
 
 import { Layout } from "@custom/.";
 

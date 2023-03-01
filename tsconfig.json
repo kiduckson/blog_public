@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@custom/*": ["custom/*"],
-      "@component/*": ["component/*"],
+      "@components/*": ["components/*"],
       "contentlayer/generated": [".contentlayer/generated"]
     },
     "target": "es5",

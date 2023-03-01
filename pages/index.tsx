@@ -1,9 +1,8 @@
 import React from "react";
 import type { NextPage, GetStaticProps, InferGetStaticPropsType } from "next";
 
-import { Layout } from "../custom/Layout";
 import Link from "next/link";
-import { Text, Flex, Button, Box } from "../components";
+import { Text, Flex, Button } from "../components";
 import Typed from "typed.js";
 
 type GspPageProps = InferGetStaticPropsType<typeof getStaticProps>;
@@ -37,7 +36,7 @@ const TypedReactHooks = ({ strings }: { strings: string[] | undefined }) => {
     <Flex>
       <Flex
         css={{
-          background: "linear-gradient(to right, $crimson11, $pink11)",
+          background: "linear-gradient(to right, $crimson11, $plum11)",
           padding: "0.5em",
           minHeight: "2em",
           borderRadius: "10px",
@@ -61,12 +60,12 @@ const TypedReactHooks = ({ strings }: { strings: string[] | undefined }) => {
 const Home: NextPage<Props> = (props: GspPageProps) => {
   return (
     <Flex align={"center"} direction={"column"} gap={5}>
-      <Text size={9} css={{ fontWeight: "bolder" }}>
+      <Text size={{ "@initial": "8", "@bp1": "9" }} css={{ fontWeight: "900" }}>
         {props.contents[props.locale].layoutTexts.headerText}
       </Text>
       <TypedReactHooks strings={props.contents[props.locale].typedTexts} />
       <Link href="/posts/portfolio">
-        <Button size={3} ghost variant={"red"} css={{ placeSelf: "center start" }}>
+        <Button size={3} ghost variant={"gray"} css={{ placeSelf: "center start" }}>
           <Text size={2} css={{ fontWeight: "600" }}>
             <a>{props.contents[props.locale].layoutTexts.buttonText}</a>
           </Text>

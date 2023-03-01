@@ -23,6 +23,7 @@ import { AccountDropDown } from "./AccountDropDown";
 const Nav = styled(Grid, {
   transition: "all 0.2s ease-in",
   gridTemplateColumns: "auto 1fr",
+  zIndex: "$2",
   position: "sticky",
   top: "0",
   backgroundColor: "$canvas",

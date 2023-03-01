@@ -1,3 +1,4 @@
+export { Avatar } from "./Avatar";
 export { Alert, alertStyle } from "./Alert";
 export { Button, buttonStyle } from "./Button";
 export { Box } from "./Box";

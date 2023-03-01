@@ -111,6 +111,13 @@ export const Text = styled("span", {
   },
   compoundVariants: [
     {
+      variant: "crimson_plum",
+      gradient: "true",
+      css: {
+        background: "linear-gradient(to right, $crimson11, $plum11)",
+      },
+    },
+    {
       variant: "red",
       gradient: "true",
       css: {
