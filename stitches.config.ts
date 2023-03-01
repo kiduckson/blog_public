@@ -194,8 +194,8 @@ export const { styled, css, theme, createTheme, getCssText, globalCss, keyframes
         shadowDark: "hsl(206 22% 7% / 20%)",
       },
       fonts: {
-        untitled: "NanumSquareNeo, Untitled Sans, -apple-system, system-ui, sans-serif",
-        mono: "NanumSquareNeo, Söhne Mono, menlo, monospace",
+        untitled: "-apple-system, system-ui, sans-serif",
+        mono: "-apple-system, system-ui, sans-serif, Söhne Mono, menlo, monospace",
       },
       space: {
         1: "5px",
@@ -503,15 +503,31 @@ export const globalStyles = globalCss({
     transition: "all 0.2s ease-in",
     lineHeight: "1.25em",
   },
-  code: {
-    background: "$teal6",
-    color: "$hiContrast",
-    padding: "2.5px 5px",
-    borderRadius: "6px",
-    fontSize: "1em",
-  },
-  a: {
-    textDecoration: "none",
-    color: "$blue11",
+
+  // ".rehype-code-title": {
+  //   marginBottom: "-0.6rem",
+  //   padding: "0.5em 1em",
+  //   fontFamily:
+  //     "Consolas, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Monaco,Courier New, Courier, monospace",
+  //   backgroundColor: "$slate12",
+  //   color: "$loContrast",
+  //   zIndex: "0",
+  //   borderTopLeftRadius: "$1",
+  //   borderTopRightRadius: "$1",
+  // },
+
+  // code: {
+  //   background: "$teal6",
+  //   color: "$hiContrast",
+  //   padding: "$1 $2",
+  //   borderRadius: "$1",
+  //   fontSize: "$2",
+  // },
+  // a: {
+  //   textDecoration: "none",
+  //   color: "$blue11",
+  // },
+  p: {
+    margin: "$2 0",
   },
 });

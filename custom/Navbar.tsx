@@ -27,7 +27,6 @@ const Nav = styled(Grid, {
   top: "0",
   backgroundColor: "$canvas",
   py: "$4",
-  px: "$2",
   br: "$4",
 });
 

@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@custom/*": ["custom/*"],
+      "@component/*": ["component/*"],
+      "contentlayer/generated": [".contentlayer/generated"]
+    },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -21,7 +27,8 @@
     "**/*.tsx",
     "custom/modal/ModalsContext.js",
     "custom/modal/ModalsProvider.js",
-    "pages/blog/my.mdx"
+    "posts/*.mdx",
+    ".contentlayer/generated"
   ],
   "exclude": ["node_modules"]
 }

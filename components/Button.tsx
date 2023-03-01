@@ -60,6 +60,28 @@ export const buttonStyle = css({
       },
     },
     variant: {
+      crimson: {
+        backgroundColor: "$loContrast",
+        boxShadow: "inset 0 0 0 1px $colors$crimson7",
+        color: "$hiContrast",
+        "@hover": {
+          "&:hover": {
+            boxShadow: "inset 0 0 0 1px $colors$crimson8",
+          },
+        },
+        "&:active": {
+          backgroundColor: "$crimson2",
+          boxShadow: "inset 0 0 0 1px $colors$crimson8",
+        },
+        "&:focus": {
+          boxShadow: "inset 0 0 0 1px $colors$crimson8, 0 0 0 1px $colors$crimson8",
+        },
+        '&[data-radix-popover-trigger][data-state="open"], &[data-radix-dropdown-menu-trigger][data-state="open"]':
+          {
+            backgroundColor: "$crimson4",
+            boxShadow: "inset 0 0 0 1px $colors$crimson8",
+          },
+      },
       gray: {
         backgroundColor: "$loContrast",
         boxShadow: "inset 0 0 0 1px $colors$slate7",

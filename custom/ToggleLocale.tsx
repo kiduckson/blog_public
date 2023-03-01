@@ -16,7 +16,7 @@ export function ToggleLocale() {
   const toggleButton = () => {
     return (
       <Link href={{ pathname, query }} as={asPath} locale={otherLocale} legacyBehavior>
-        <Button ghost>{otherLocale}</Button>
+        <Button ghost>{activeLocale}</Button>
       </Link>
     );
   };

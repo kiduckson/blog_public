@@ -9,9 +9,9 @@ import { darkTheme, globalStyles } from "../stitches.config";
 
 // store wrapper
 import { wrapper } from "../redux/store";
-import { Providers } from "../components/Providers";
+import { MDXProvider } from "@mdx-js/react";
 
-// providers
+import { Layout } from "@custom/.";
 
 function MyApp({ Component, pageProps }: AppProps) {
   globalStyles();
@@ -25,7 +25,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       }}
     >
       <NextNProgress />
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ThemeProvider>
   );
 }
