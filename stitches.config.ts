@@ -502,6 +502,7 @@ export const globalStyles = globalCss({
     background: "$canvas",
     transition: "all 0.2s ease-in",
     lineHeight: "1.25em",
+    m: 0,
   },
 
   // ".rehype-code-title": {

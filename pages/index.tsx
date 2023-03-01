@@ -99,7 +99,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ locale = "en", loc
           typedTexts: [
             "Hi, My name is Ted Son, a full-stack developer.",
             "I am a problem solver.",
-            "Not restricted to a specific language",
+            "Not limited to a specific language.",
             "Fluent in both English and Korean",
           ],
           layoutTexts: {
